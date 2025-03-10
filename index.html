@@ -2,190 +2,159 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
-  <title>Discord Bot: Управление Балансом и Сборами</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Документация по Боту</title>
   <style>
+    /* Общие стили */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
     body {
       font-family: Arial, sans-serif;
-      max-width: 900px;
+      background-color: #f4f4f9;
+      color: #333;
+    }
+
+    .container {
+      width: 80%;
       margin: 0 auto;
       padding: 20px;
-      background-color: #f8f9fa;
-      color: #333;
-      line-height: 1.6;
     }
-    header, footer {
+
+    /* Заголовки */
+    h1 {
       text-align: center;
-      padding: 10px 0;
-    }
-    h1, h2, h3 {
-      color: #007bff;
-    }
-    nav ul {
-      list-style: none;
-      padding: 0;
-      text-align: center;
+      color: #2e3b4e;
       margin-bottom: 20px;
     }
-    nav ul li {
-      display: inline-block;
-      margin: 0 15px;
+
+    h2 {
+      color: #2e3b4e;
+      margin-top: 20px;
     }
-    nav ul li a {
-      text-decoration: none;
-      color: #007bff;
-      font-weight: bold;
+
+    h3 {
+      color: #3e4e63;
+      margin-bottom: 10px;
     }
-    nav ul li a:hover {
-      text-decoration: underline;
-    }
-    pre {
-      background-color: #eee;
-      padding: 10px;
-      overflow: auto;
-    }
-    code {
-      background-color: #eee;
-      padding: 2px 4px;
-    }
+
+    /* Секции */
     section {
-      margin-bottom: 40px;
+      margin-bottom: 30px;
+    }
+
+    /* Команды */
+    .command ul {
+      list-style-type: none;
+      padding-left: 0;
+    }
+
+    .command li {
+      margin: 5px 0;
+    }
+
+    code {
+      font-family: monospace;
+      background-color: #e7e7e7;
+      padding: 3px 5px;
+      border-radius: 3px;
+    }
+
+    /* Примечания и лицензия */
+    .notes, .license {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 5px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .notes ul, .license ul {
+      list-style-type: none;
+      padding-left: 0;
+    }
+
+    .notes li, .license p {
+      margin: 10px 0;
     }
   </style>
 </head>
 <body>
-  <header>
-    <h1>Discord Bot: Управление Балансом и Сборами</h1>
-    <p>Бот для управления балансами пользователей, сборами и штрафами в Discord.</p>
-  </header>
-
-  <nav>
-    <ul>
-      <li><a href="#features">Функционал</a></li>
-      <li><a href="#commands">Команды</a></li>
-      <li><a href="#installation">Установка</a></li>
-      <li><a href="#faq">FAQ</a></li>
-    </ul>
-  </nav>
-
-  <section id="features">
-    <h2>Функционал бота</h2>
-    <h3>1. Управление балансом</h3>
-    <ul>
-      <li>Просмотр текущего баланса</li>
-      <li>Перевод средств между пользователями</li>
-      <li>История транзакций</li>
-    </ul>
-
-    <h3>2. Управление сборами (Parties)</h3>
-    <ul>
-      <li>Просмотр активных сборов</li>
-      <li>Присоединение и выход из сборов</li>
-      <li>Отправка уведомлений участникам</li>
-    </ul>
-
-    <h3>3. Управление штрафами</h3>
-    <ul>
-      <li>Наложение штрафов с автоматическим списанием средств</li>
-    </ul>
-
-    <h3>4. Управление посещаемостью (В разработке)</h3>
-    <ul>
-      <li>Статистика посещаемости участников</li>
-    </ul>
-  </section>
-
-  <section id="commands">
-    <h2>Команды бота</h2>
-
-    <h3>Баланс</h3>
-    <ul>
-      <li><code>!balance</code> — показывает ваш баланс</li>
-      <li><code>!balance transfer &lt;пользователь&gt; &lt;сумма&gt;</code> — перевод средств</li>
-      <li><code>!balance history [пользователь]</code> — история транзакций</li>
-    </ul>
-    <p><em>Примечание:</em> команды <code>deposit</code>, <code>withdraw</code> и <code>top</code> доступны только для пользователей с ролью финансиста.</p>
-
-    <h3>Сборы (Parties)</h3>
-    <ul>
-      <li><code>!party</code> — просмотр активных сборов</li>
-      <li><code>!party join &lt;ID сборa&gt;</code> — присоединение к сбору</li>
-      <li><code>!party leave &lt;ID сборa&gt;</code> — выход из сборa</li>
-      <li><code>!party notify &lt;ID сборa&gt; &lt;сообщение&gt;</code> — уведомление участников</li>
-    </ul>
-    <p><em>Примечание:</em> команды <code>create</code> и <code>delete</code> доступны только для пользователей с ролью создателя контента.</p>
-
-    <h3>Штрафы</h3>
-    <ul>
-      <li><code>!fine &lt;пользователь&gt; &lt;сумма&gt; &lt;причина&gt;</code> — наложение штрафа</li>
-    </ul>
-
-    <h3>Посещаемость (В разработке)</h3>
-    <ul>
-      <li><code>!attendance</code> — список команд для работы с посещаемостью</li>
-      <li><code>!attendance top</code> — топ участников по посещаемости</li>
-      <li><code>!attendance my</code> — ваша посещаемость</li>
-      <li><code>!attendance member &lt;пользователь&gt;</code> — посещаемость указанного пользователя</li>
-    </ul>
-  </section>
-
-  <section id="installation">
-    <h2>Установка и запуск</h2>
+  <div class="container">
+    <header>
+      <h1>Discord Бот для Финансов и Посещаемости</h1>
+    </header>
     
-    <h3>1. Клонирование репозитория</h3>
-    <pre>
-git clone https://github.com/yourusername/discord-bot.git
-    </pre>
+    <section class="intro">
+      <p>Этот бот предназначен для управления финансовыми операциями, системой посещаемости и штрафами на сервере Discord.</p>
+    </section>
     
-    <h3>2. Установка зависимостей</h3>
-    <pre>
-pip install -r requirements.txt
-    </pre>
-    
-    <h3>3. Настройка конфигурации</h3>
-    <p>При первом запуске автоматически создастся файл <code>config.json</code> со следующей базовой конфигурацией. Заполните его:</p>
-    <pre>
-{
-    "TOKEN": "YOUR_BOT_TOKEN",
-    "FINE_CHANNEL_ID": 0,
-    "NOTIFY_CHANNEL_ID": 0,
-    "LOG_CHANNEL_ID": 0,
-    "ROLE_ID": 0,
-    "CONTENT_MAKER_ROLE_ID": 0,
-    "FINANCIER_ROLE_ID": 0
-}
-    </pre>
-    
-    <h3>4. Запуск бота</h3>
-    <pre>
-python bot.py
-    </pre>
-  </section>
+    <section class="commands">
+      <h2>Команды</h2>
 
-  <section id="faq">
-    <h2>Часто задаваемые вопросы (FAQ)</h2>
+      <div class="command">
+        <h3>1. Баланс</h3>
+        <ul>
+          <li><strong>Просмотр баланса:</strong> <code>!balance</code></li>
+          <li><strong>Пополнение баланса:</strong> <code>!balance deposit @member &lt;сумма&gt;</code></li>
+          <li><strong>Снятие средств:</strong> <code>!balance withdraw @member &lt;сумма&gt;</code></li>
+          <li><strong>Перевод средств:</strong> <code>!balance transfer @member &lt;сумма&gt;</code></li>
+          <li><strong>История транзакций:</strong> <code>!balance history [@member]</code></li>
+        </ul>
+      </div>
 
-    <h3>Как узнать свой баланс?</h3>
-    <p>Введите команду <code>!balance</code> для отображения вашего текущего баланса.</p>
+      <div class="command">
+        <h3>2. Посещаемость</h3>
+        <ul>
+          <li><strong>Чек-ин (отметить посещаемость):</strong> <code>!attendance checkin</code></li>
+          <li><strong>Моя посещаемость:</strong> <code>!attendance my</code></li>
+          <li><strong>Посещаемость другого участника:</strong> <code>!attendance member @member</code></li>
+          <li><strong>Топ посещаемости:</strong> <code>!attendance top</code></li>
+        </ul>
+      </div>
 
-    <h3>Как перевести средства другому пользователю?</h3>
-    <p>Используйте команду <code>!balance transfer &lt;пользователь&gt; &lt;сумма&gt;</code>.</p>
+      <div class="command">
+        <h3>3. Штрафы</h3>
+        <ul>
+          <li><strong>Выдача штрафа:</strong> <code>!fine @member &lt;сумма&gt; [причина]</code></li>
+        </ul>
+      </div>
 
-    <h3>Почему у меня нет доступа к некоторым командам?</h3>
-    <p>Некоторые команды доступны только для пользователей с определёнными ролями:</p>
-    <ul>
-      <li>Финансисты — для управления балансом (пополнение, снятие, топ баланса).</li>
-      <li>Создатели контента — для управления сборами (создание, удаление сборов).</li>
-    </ul>
+      <div class="command">
+        <h3>4. Сборы (Party)</h3>
+        <ul>
+          <li><strong>Список активных сборов:</strong> <code>!party</code></li>
+          <li><strong>Создать сбор:</strong> <code>!party create &lt;информация о сборе&gt;</code></li>
+          <li><strong>Присоединиться к сбору:</strong> <code>!party join &lt;ID сбора&gt;</code></li>
+          <li><strong>Покинуть сбор:</strong> <code>!party leave &lt;ID сбора&gt;</code></li>
+          <li><strong>Удалить сбор:</strong> <code>!party delete &lt;ID сбора&gt;</code></li>
+          <li><strong>Уведомить участников сбора:</strong> <code>!party notify &lt;ID сбора&gt; &lt;сообщение&gt;</code></li>
+        </ul>
+      </div>
 
-    <h3>Как присоединиться к сбору?</h3>
-    <p>Введите команду <code>!party join &lt;ID сборa&gt;</code> для присоединения к активному сбору.</p>
+      <div class="command">
+        <h3>5. Обновление сообщений</h3>
+        <ul>
+          <li><strong>Обновить сообщение:</strong> <code>!update_message &lt;ключ&gt; &lt;новое сообщение&gt;</code></li>
+        </ul>
+      </div>
+    </section>
 
-    <h3>Как работает система штрафов?</h3>
-    <p>Пользователи с ролью финансиста могут использовать команду <code>!fine</code> для наложения штрафа, что приводит к списанию средств с баланса нарушителя и отправке уведомлений.</p>
-  </section>
+    <section class="notes">
+      <h2>Примечания</h2>
+      <ul>
+        <li>Все команды начинаются с <code>!</code> (по умолчанию).</li>
+        <li>Для использования команд пополнения, снятия, перевода средств и управления сбором могут потребоваться определённые роли.</li>
+        <li>Команды, такие как <code>!fine</code>, могут вызывать реальные изменения в балансе участников, будьте осторожны при их использовании.</li>
+      </ul>
+    </section>
 
-  <footer>
-    <p>© 2025 Discord Bot. Все права защищены.</p>
-  </footer>
+    <section class="license">
+      <h2>Лицензия</h2>
+      <p>Этот бот распространяется бесплатно и доступен для использования на сервере Discord.</p>
+    </section>
+  </div>
 </body>
 </html>
